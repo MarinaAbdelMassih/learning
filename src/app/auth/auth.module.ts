@@ -6,18 +6,24 @@ import { AuthComponent } from './auth.component';
 import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { PasswordCheckComponent } from './password-check/password-check.component';
+import {MatIconModule} from "@angular/material/icon";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 
 
 @NgModule({
   declarations: [
     AuthComponent,
-    RegisterComponent
+    RegisterComponent,
+    PasswordCheckComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,   ReactiveFormsModule , FormsModule
   ]
 })
 export class AuthModule { }

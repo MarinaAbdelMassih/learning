@@ -1,14 +1,38 @@
 <div class="register-form">
   <p class="register-form__title">Register</p>
-  <form>
+  <form [formGroup]="registerForm">
     <mat-form-field appearance="fill">
       <mat-label>User Name</mat-label>
-      <input matInput>
+      <input type="text" name="name-input" matInput formControlName="userName">
+      <!--      <mat-error *ngIf="registerForm.controls.['userName'].touched-->
+      <!--                                    && registerForm.controls.['userName'].errors?.required">-->
+      <!--        name is required-->
+      <!--      </mat-error>-->
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
-      <input matInput>
+      <input matInput type="password" name="password-input" formControlName="password">
+      <!--      <app-password-check [password]="registerForm.controls.password.value"></app-password-check>-->
+      <!--      <mat-error *ngIf="registerForm.controls.['password'].touched-->
+      <!--                                    && registerForm.controls.['password'].errors?.required">-->
+      <!--        password is required-->
+
+      <!--      </mat-error>-->
     </mat-form-field>
-    <button type="submit">submit</button>
+    <mat-form-field appearance="fill">
+      <mat-label>confirm Password</mat-label>
+      <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword">
+      <!--      <mat-error *ngIf="registerForm.controls.['confirmPassword'].touched-->
+      <!--                                    && registerForm.controls.['confirmPassword'].errors?.required">-->
+      <!--        password is required-->
+      <!--      </mat-error>-->
+      <!--      <mat-error *ngIf="registerForm.controls.['confirmPassword'].touched-->
+      <!--                                    && !registerForm.controls.['confirmPassword'].errors?.required-->
+      <!--                                    && (registerForm.controls.['password'].value-->
+      <!--                                    != registerForm.controls.['confirmPassword'].value)">-->
+      <!--        confirm password not match-->
+      <!--      </mat-error>-->
+    </mat-form-field>
+    <button (click)="submit()">submit</button>
   </form>
 </div>
