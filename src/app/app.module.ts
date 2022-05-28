@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,8 +17,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    BrowserAnimationsModule ,
-    ReactiveFormsModule , FormsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule, FormsModule, MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

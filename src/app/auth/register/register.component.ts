@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -7,10 +8,10 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup ;
+  registerForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
@@ -29,6 +30,11 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
+    this.authService.register('hello' , 'oooooo').then(
+      data => {
+        console.log(data);
+      }
+    )
     console.log(this.registerForm.value)
   }
 
