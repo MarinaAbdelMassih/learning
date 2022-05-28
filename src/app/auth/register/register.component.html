@@ -22,13 +22,16 @@
                                      && registerForm.controls['password'].hasError('pattern')">
       <app-password-check [password]="registerForm.controls['password'].value"></app-password-check>
     </div>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill"  >
       <mat-label>confirm Password</mat-label>
-      <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword">
-      <mat-error *ngIf="registerForm.controls['confirmPassword'].touched
-                                          && registerForm.controls['confirmPassword'].hasError('required')">
-        password is required
+      <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword" [readonly]="!registerForm.controls['password'].value">
+      <mat-error *ngIf="!registerForm.controls['password'].value">
+        please fill field password first
       </mat-error>
+<!--      <mat-error *ngIf="registerForm.controls['confirmPassword'].touched-->
+<!--                                          && registerForm.controls['confirmPassword'].hasError('required')">-->
+<!--        password is required-->
+<!--      </mat-error>-->
       <mat-error *ngIf="registerForm.controls['confirmPassword'].touched
                                           && !registerForm.controls['confirmPassword'].hasError('required')
                                           && (registerForm.controls['password'].value
@@ -36,6 +39,9 @@
         confirm password not match
       </mat-error>
     </mat-form-field>
-    <button [disabled]="!registerForm.valid" (click)="submit()">submit</button>
+    <button [disabled]="!registerForm.valid" (click)="submit()"
+            [ngStyle]="{'background-color': !registerForm.valid ? 'gray' :'green', 'cursor' : !registerForm.valid ?'':'pointer'} ">
+      submit
+    </button>
   </form>
 </div>
