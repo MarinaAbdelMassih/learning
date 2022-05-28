@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {
   }
 
-  register(userName: string, password: string):Promise<any> {
-    return this.httpClient.post("http://localhost:3000/auth/register",{userName,password}).toPromise();
+  register(username: string, password: string):Promise<any> {
+    return this.httpClient.post("http://localhost:3000/auth/register",{username,password}).toPromise();
   }
 }

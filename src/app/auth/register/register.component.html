@@ -3,36 +3,39 @@
   <form [formGroup]="registerForm">
     <mat-form-field appearance="fill">
       <mat-label>User Name</mat-label>
-      <input type="text" name="name-input" matInput formControlName="userName">
-      <!--      <mat-error *ngIf="registerForm.controls.['userName'].touched-->
-      <!--                                    && registerForm.controls.['userName'].errors?.required">-->
-      <!--        name is required-->
-      <!--      </mat-error>-->
+      <input type="text" name="name-input" matInput formControlName="username">
+      <mat-error
+        *ngIf="registerForm.controls['username'].hasError('required') && registerForm.controls['username'].touched">
+        name is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input matInput type="password" name="password-input" formControlName="password">
-      <!--      <app-password-check [password]="registerForm.controls.password.value"></app-password-check>-->
-      <!--      <mat-error *ngIf="registerForm.controls.['password'].touched-->
-      <!--                                    && registerForm.controls.['password'].errors?.required">-->
-      <!--        password is required-->
+      <mat-error *ngIf="registerForm.controls['password'].touched
+                                          && registerForm.controls['password'].hasError('required')">
+        password is required
 
-      <!--      </mat-error>-->
+      </mat-error>
     </mat-form-field>
+    <div *ngIf="registerForm.controls['password'].touched
+                                     && registerForm.controls['password'].hasError('pattern')">
+      <app-password-check [password]="registerForm.controls['password'].value"></app-password-check>
+    </div>
     <mat-form-field appearance="fill">
       <mat-label>confirm Password</mat-label>
       <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword">
-      <!--      <mat-error *ngIf="registerForm.controls.['confirmPassword'].touched-->
-      <!--                                    && registerForm.controls.['confirmPassword'].errors?.required">-->
-      <!--        password is required-->
-      <!--      </mat-error>-->
-      <!--      <mat-error *ngIf="registerForm.controls.['confirmPassword'].touched-->
-      <!--                                    && !registerForm.controls.['confirmPassword'].errors?.required-->
-      <!--                                    && (registerForm.controls.['password'].value-->
-      <!--                                    != registerForm.controls.['confirmPassword'].value)">-->
-      <!--        confirm password not match-->
-      <!--      </mat-error>-->
+      <mat-error *ngIf="registerForm.controls['confirmPassword'].touched
+                                          && registerForm.controls['confirmPassword'].hasError('required')">
+        password is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.controls['confirmPassword'].touched
+                                          && !registerForm.controls['confirmPassword'].hasError('required')
+                                          && (registerForm.controls['password'].value
+                                     != registerForm.controls['confirmPassword'].value)">
+        confirm password not match
+      </mat-error>
     </mat-form-field>
-    <button (click)="submit()">submit</button>
+    <button [disabled]="!registerForm.valid" (click)="submit()">submit</button>
   </form>
 </div>
