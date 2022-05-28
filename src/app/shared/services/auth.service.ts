@@ -10,6 +10,6 @@ export class AuthService {
   }
 
   register(username: string, password: string):Promise<any> {
-    return this.httpClient.post("http://localhost:3000/auth/register",{username,password}).toPromise();
+    return this.httpClient.post("https://todo-api-nestjs.herokuapp.com/auth/register",{username,password}).toPromise();
   }
 }
