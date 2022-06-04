@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import {AuthService} from "../../shared/services/auth.service";
+import {CustomValidators} from "../custom-validators";
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,10 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.pattern(this.passwordPattern)]],
+      // password: ['', [Validators.required, Validators.pattern(this.passwordPattern)]],
+      password: ['', Validators.compose([Validators.required , CustomValidators.patternValidator(/[\d]/, {hasNumber: true}),
+      CustomValidators.patternValidator(/[A-Z]/,{hasCapitalCase:true}),CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
+        CustomValidators.patternValidator(/[$&+,:;=?@#|'<>.^*()%!-]/, { hasSpecialCharacters: true }), Validators.minLength(8)])],
       confirmPassword: ['', Validators.required],
     }, {
       validators : this.MatchPassword

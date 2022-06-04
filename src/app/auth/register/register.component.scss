@@ -25,5 +25,27 @@
       font-size: 20px;
       margin: auto;
     }
+
+    .password-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .is-invalid {
+      border-left: solid 6px red;
+    }
+
+    .material-icons {
+      display: inline-flex;
+      vertical-align: middle;
+    }
+
+    .text-danger {
+      color: red;
+    }
+
+    .text-success {
+      color: green;
+    }
   }
 }
