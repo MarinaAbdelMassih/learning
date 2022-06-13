@@ -10,13 +10,11 @@ import {CustomValidators} from "../custom-validators";
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  passwordPattern = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{8,20}$';
 
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      // password: ['', [Validators.required, Validators.pattern(this.passwordPattern)]],
       password: ['', Validators.compose([Validators.required , CustomValidators.patternValidator(/[\d]/, {hasNumber: true}),
       CustomValidators.patternValidator(/[A-Z]/,{hasCapitalCase:true}),CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
         CustomValidators.patternValidator(/[$&+,:;=?@#|'<>.^*()%!-]/, { hasSpecialCharacters: true }), Validators.minLength(8)])],
@@ -37,8 +35,8 @@ export class RegisterComponent implements OnInit {
     )
   }
 
-  // @ts-ignore
-  public MatchPassword(AC: AbstractControl) {
+  
+  public MatchPassword(AC: AbstractControl): any {
     let password = AC.get('password')?.value; // to get value in input tag
     let confirmNewPassword = AC.get('confirmPassword')?.value; // to get value in input tag
     if (password != confirmNewPassword) {

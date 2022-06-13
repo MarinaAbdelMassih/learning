@@ -12,11 +12,6 @@
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input matInput type="password" name="password-input" formControlName="password">
-      <!--      <mat-error *ngIf="registerForm.controls['password'].touched-->
-      <!--                                          && registerForm.controls['password'].hasError('required')">-->
-      <!--        password is required-->
-
-      <!--      </mat-error>-->
     </mat-form-field>
     <div class="password-container" *ngIf="registerForm.controls['password'].touched ">
       <label
@@ -55,10 +50,6 @@
         Must contain at least 1 Special Character!
       </label>
     </div>
-    <!--    <div *ngIf="registerForm.controls['password'].touched-->
-    <!--                                     && registerForm.controls['password'].hasError('pattern')">-->
-    <!--      <app-password-check [password]="registerForm.controls['password'].value"></app-password-check>-->
-    <!--    </div>-->
     <mat-form-field appearance="fill">
       <mat-label>confirm Password</mat-label>
       <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword"
@@ -66,10 +57,6 @@
       <mat-error *ngIf="!registerForm.controls['password'].value">
         please fill field password first
       </mat-error>
-      <!--      <mat-error *ngIf="registerForm.controls['confirmPassword'].touched-->
-      <!--                                          && registerForm.controls['confirmPassword'].hasError('required')">-->
-      <!--        password is required-->
-      <!--      </mat-error>-->
       <mat-error *ngIf="registerForm.controls['confirmPassword'].touched
                                           && !registerForm.controls['confirmPassword'].hasError('required')
                                           && (registerForm.controls['password'].value
@@ -78,7 +65,7 @@
       </mat-error>
     </mat-form-field>
     <button [disabled]="!registerForm.valid" (click)="submit()"
-            [ngStyle]="{'background-color': !registerForm.valid ? 'gray' :'green', 'cursor' : !registerForm.valid ?'':'pointer'} ">
+            [ngClass]="!registerForm.valid ? 'disabled' :'enabled'">
       submit
     </button>
   </form>

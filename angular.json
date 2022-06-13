@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "learning"
+  "defaultProject": "learning",
+  "cli": {
+    "analytics": false
+  }
 }

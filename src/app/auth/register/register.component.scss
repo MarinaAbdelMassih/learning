@@ -47,5 +47,13 @@
     .text-success {
       color: green;
     }
+    .enabled {
+      background-color: green;
+      cursor: pointer;
+    }
+    .disabled {
+      background-color: gray;
+     
+    }
   }
 }
