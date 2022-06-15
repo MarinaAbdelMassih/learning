@@ -51,15 +51,8 @@
     </div>
     <mat-form-field appearance="fill">
       <mat-label>confirm Password</mat-label>
-      <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword"
-             [readonly]="!registerForm.controls['password'].value">
-      <mat-error *ngIf="!registerForm.controls['password'].value">
-        please fill field password first
-      </mat-error>
-      <mat-error *ngIf="registerForm.controls['confirmPassword'].touched
-                                          && !registerForm.controls['confirmPassword'].hasError('required')
-                                          && (registerForm.controls['password'].value
-                                     != registerForm.controls['confirmPassword'].value)">
+      <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword">
+      <mat-error >
         confirm password not match
       </mat-error>
     </mat-form-field>
