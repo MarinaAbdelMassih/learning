@@ -1,11 +1,10 @@
 <div class="register-form">
-  <p class="register-form__title">Register</p>
+  <h1 class="register-form__title">Register</h1>
   <form [formGroup]="registerForm">
     <mat-form-field appearance="fill">
       <mat-label>User Name</mat-label>
       <input type="text" name="name-input" matInput formControlName="username">
-      <mat-error
-        *ngIf="registerForm.controls['username'].hasError('required') && registerForm.controls['username'].touched">
+      <mat-error >
         name is required
       </mat-error>
     </mat-form-field>
@@ -65,7 +64,7 @@
       </mat-error>
     </mat-form-field>
     <button [disabled]="!registerForm.valid" (click)="submit()"
-            [ngClass]="!registerForm.valid ? 'disabled' :'enabled'">
+           >
       submit
     </button>
     

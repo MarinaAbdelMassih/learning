@@ -24,6 +24,8 @@
       border-radius: 10px;
       font-size: 20px;
       margin: auto;
+      background-color: green;
+      cursor: pointer;
     }
 
     .password-container {
@@ -47,13 +49,9 @@
     .text-success {
       color: green;
     }
-    .enabled {
-      background-color: green;
-      cursor: pointer;
-    }
-    .disabled {
+    :disabled {
       background-color: gray;
-     
+      cursor: auto;
     }
   }
 }
