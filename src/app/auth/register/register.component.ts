@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
 
+
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
@@ -37,11 +38,11 @@ export class RegisterComponent implements OnInit {
   }
 
   
-  public MatchPassword(AC: AbstractControl) : any {
+  public MatchPassword(AC: AbstractControl) : ValidationErrors | null {
     let password = AC.get('password')?.value; // to get value in input tag
     let confirmNewPassword = AC.get('confirmPassword')?.value; // to get value in input tag
     if (password != confirmNewPassword) {
-      AC.get('confirmPassword')?.setErrors({MatchPassword: true})
+      return {MatchPassword: true}
     } else {
       return null
     }
