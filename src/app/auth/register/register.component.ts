@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors } from "@angular/forms";
-import {AuthService} from "../../shared/services/auth.service";
-import {CustomValidators} from "../custom-validators";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import {AuthService} from '../../shared/services/auth.service';
+import {CustomValidators} from '../custom-validators';
+import { IUserInfo } from '../../shared/interfaces/user-info.interface';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,11 +29,14 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    localStorage.setItem('username', this.registerForm.value.username );
-    localStorage.setItem('password', this.registerForm.value.password);
-    this.authService.register(this.registerForm.value.username , this.registerForm.value.password).subscribe(
+    let userData : IUserInfo = {
+      username: this.registerForm.value.username ,
+      password: this.registerForm.value.password 
+    }
+    this.authService.register(userData).subscribe(
       data => {
         console.log(data);
+        localStorage.setItem('user token', data);
       }
     )
   }

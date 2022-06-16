@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import { environment } from '../../../environments/environment';
-import {  Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
+import {IUserInfo} from '../interfaces/user-info.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {
   }
 
-  register(username: string, password: string):Observable<any>{
-    return this.httpClient.post(environment.baseUrl +"auth/register",{username,password});
+  register(userData: IUserInfo):Observable<any>{
+    return this.httpClient.post(environment.baseUrl +'auth/register',{userData});
   }
 }
