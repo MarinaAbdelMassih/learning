@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import {AuthService} from '../../shared/services/auth.service';
 import {CustomValidators} from '../custom-validators';
-import { IUserInfo } from '../../shared/interfaces/user-info.interface';
+import {IToken, IUserInfo} from '../../shared/interfaces/user-info.interface';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -31,17 +31,17 @@ export class RegisterComponent implements OnInit {
   submit() {
     let userData : IUserInfo = {
       username: this.registerForm.value.username ,
-      password: this.registerForm.value.password 
+      password: this.registerForm.value.password
     }
     this.authService.register(userData).subscribe(
-      data => {
+      (data : IToken) => {
         console.log(data);
         localStorage.setItem('user token', data);
       }
     )
   }
 
-  
+
   public MatchPassword(AC: AbstractControl) : ValidationErrors | null {
     let password = AC.get('password')?.value; // to get value in input tag
     let confirmNewPassword = AC.get('confirmPassword')?.value; // to get value in input tag
