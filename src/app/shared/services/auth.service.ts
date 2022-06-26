@@ -12,7 +12,6 @@ export class AuthService {
   }
 
   register(userData: IUserInfo):Observable<IToken>{
-    // @ts-ignore
     return this.httpClient.post(environment.baseUrl +'auth/register',userData);
   }
 }

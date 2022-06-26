@@ -34,9 +34,9 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.value.password
     }
     this.authService.register(userData).subscribe(
-      (data : IToken) => {
+      data => {
         console.log(data);
-        localStorage.setItem('user token', data);
+        localStorage.setItem('user token', data.access_token);
       }
     )
   }
