@@ -12,6 +12,6 @@ export class AuthService {
   }
 
   register(userData: IUserInfo):Observable<IToken>{
-    return this.httpClient.post(environment.baseUrl +'auth/register',userData);
+    return this.httpClient.post<IToken>(environment.baseUrl +'auth/register',userData);
   }
 }
