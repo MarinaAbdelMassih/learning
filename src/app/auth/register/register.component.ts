@@ -40,8 +40,7 @@ export class RegisterComponent implements OnInit {
     )
   }
 
-
-  public MatchPassword(AC: AbstractControl) : void {
+  public MatchPassword(AC: AbstractControl) : null {
     let password = AC.get('password')?.value; // to get value in input tag
     let confirmNewPassword = AC.get('confirmPassword')?.value; // to get value in input tag
     if (password != confirmNewPassword) {
@@ -49,5 +48,6 @@ export class RegisterComponent implements OnInit {
     } else {
       AC.get('confirmPassword')?.setErrors(null);
     }
+    return null;
   }
 }
