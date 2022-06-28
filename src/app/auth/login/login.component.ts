@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMsg?: boolean;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router:Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       data => {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
-      },   err => {
+      }, err => {
         this.errorMsg = true;
       },
     )

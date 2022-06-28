@@ -8,12 +8,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,10 +22,11 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule, 
+    FormsModule,
     MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

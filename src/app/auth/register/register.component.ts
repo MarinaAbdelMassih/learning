@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors} from '@angular/forms';
 import {AuthService} from '../../shared/services/auth.service';
 import {CustomValidators} from '../custom-validators';
 import {IToken, IUserInfo} from '../../shared/interfaces/user-info.interface';
+import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,18 +12,18 @@ import {IToken, IUserInfo} from '../../shared/interfaces/user-info.interface';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  errorMsg?: boolean;
 
 
-
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required , CustomValidators.patternValidator(/[\d]/, {hasNumber: true}),
-      CustomValidators.patternValidator(/[A-Z]/,{hasCapitalCase:true}),CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
-        CustomValidators.patternValidator(/[$&+,:;=?@#|'<>.^*()%!-]/, { hasSpecialCharacters: true }), Validators.minLength(8)])],
+      password: ['', Validators.compose([Validators.required, CustomValidators.patternValidator(/[\d]/, {hasNumber: true}),
+        CustomValidators.patternValidator(/[A-Z]/, {hasCapitalCase: true}), CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
+        CustomValidators.patternValidator(/[$&+,:;=?@#|'<>.^*()%!-]/, {hasSpecialCharacters: true}), Validators.minLength(8)])],
       confirmPassword: ['', Validators.required],
     }, {
-      validators : this.MatchPassword
+      validators: this.MatchPassword
     })
   }
 
@@ -29,18 +31,21 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    let userData : IUserInfo = {
-      username: this.registerForm.value.username ,
+    let userData: IUserInfo = {
+      username: this.registerForm.value.username,
       password: this.registerForm.value.password
     }
     this.authService.register(userData).subscribe(
       data => {
         localStorage.setItem('user token', data.access_token);
+        this.router.navigate(['home']);
+      }, error => {
+        this.errorMsg = true;
       }
     )
   }
 
-  public MatchPassword(AC: AbstractControl) : null {
+  public MatchPassword(AC: AbstractControl): null {
     let password = AC.get('password')?.value; // to get value in input tag
     let confirmNewPassword = AC.get('confirmPassword')?.value; // to get value in input tag
     if (password != confirmNewPassword) {

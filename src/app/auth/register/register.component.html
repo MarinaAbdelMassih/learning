@@ -4,7 +4,7 @@
     <mat-form-field appearance="fill">
       <mat-label>User Name</mat-label>
       <input type="text" name="name-input" matInput formControlName="username">
-      <mat-error >
+      <mat-error>
         name is required
       </mat-error>
     </mat-form-field>
@@ -52,14 +52,10 @@
     <mat-form-field appearance="fill">
       <mat-label>confirm Password</mat-label>
       <input matInput type="password" name="confirm-password-input" formControlName="confirmPassword">
-      <mat-error >
+      <mat-error>
         confirm password not match
       </mat-error>
     </mat-form-field>
-    <button [disabled]="!registerForm.valid" (click)="submit()"
-           >
-      submit
-    </button>
-
+    <button [disabled]="!registerForm.valid" (click)="submit()">submit</button>
   </form>
 </div>
