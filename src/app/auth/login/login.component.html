@@ -1,0 +1,18 @@
+<div class="login-form">
+  <h1 class="login-form__title">Login</h1>
+  <form [formGroup]="loginForm">
+    <mat-form-field appearance="fill">
+      <mat-label>User Name</mat-label>
+      <input type="text" name="name-input" matInput formControlName="username">
+      <mat-error >
+        name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password-input" formControlName="password">
+    </mat-form-field>
+    <button [disabled]="!loginForm.valid" (click)="login()">Login</button>
+  </form>
+</div>
+<mat-error class="my-2" *ngIf="errorMsg"> username or password is incorrect</mat-error>
