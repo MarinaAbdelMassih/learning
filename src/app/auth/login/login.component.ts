@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
       }, err => {
-        this.errorMsg = err.message;
+        this.errorMsg = err.error.message;
       },
     )
   }

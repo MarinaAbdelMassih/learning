@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
       }, error => {
-        this.errorMsg = error.message;
+        this.errorMsg = error.error.message;
       }
     )
   }
