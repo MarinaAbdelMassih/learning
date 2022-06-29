@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  errorMsg?: boolean;
+  errorMsg?: string;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
       }, err => {
-        this.errorMsg = true;
+        this.errorMsg = err.message;
       },
     )
   }

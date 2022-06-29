@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  errorMsg?: boolean;
+  errorMsg?: string;
 
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
       }, error => {
-        this.errorMsg = true;
+        this.errorMsg = error.message;
       }
     )
   }

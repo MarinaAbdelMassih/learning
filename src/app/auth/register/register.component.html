@@ -59,3 +59,4 @@
     <button [disabled]="!registerForm.valid" (click)="submit()">submit</button>
   </form>
 </div>
+<mat-error class="after-submit my-2" *ngIf="errorMsg"> {{errorMsg}}</mat-error>
