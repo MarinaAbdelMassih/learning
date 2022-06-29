@@ -35,14 +35,14 @@ export class RegisterComponent implements OnInit {
       username: this.registerForm.value.username,
       password: this.registerForm.value.password
     }
-    this.authService.register(userData).subscribe(
-      data => {
+    this.authService.register(userData).subscribe({
+      next: data => {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
-      }, error => {
+      }, error: error => {
         this.errorMsg = error.error.message;
       }
-    )
+    })
   }
 
   public MatchPassword(AC: AbstractControl): null {

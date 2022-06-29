@@ -28,13 +28,13 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     }
-    this.authService.login(loginData).subscribe(
-      data => {
+    this.authService.login(loginData).subscribe({
+      next: data => {
         localStorage.setItem('user token', data.access_token);
         this.router.navigate(['home']);
-      }, err => {
+      }, error: err => {
         this.errorMsg = err.error.message;
       },
-    )
+  }  )
   }
 }
