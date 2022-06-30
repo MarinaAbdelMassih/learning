@@ -19,4 +19,8 @@ export class AuthService {
   login(userData: IUserInfo): Observable<IToken> {
     return this.httpClient.post<IToken>(environment.baseUrl + 'auth/login', userData)
   }
+
+  logout(){
+    localStorage.removeItem('user token');
+  }
 }
