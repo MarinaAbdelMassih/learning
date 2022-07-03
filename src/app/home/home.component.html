@@ -1,8 +1,7 @@
-<p>home works!</p>
-
-
+<p>home page</p>
+<p *ngIf="authService.isLoggedIn()">welcome person</p>
 <ul>
-  <li><a routerLink="/login">login</a></li>
-  <li><a (click)="logout()">logout</a></li>
+  <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">login</a></li>
+  <li *ngIf="authService.isLoggedIn()"><a style="text-decoration: underline; color: blue;cursor: pointer" (click)="logout()">logout</a></li>
 </ul>
 

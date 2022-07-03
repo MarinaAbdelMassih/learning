@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/services/auth.service";
 import {IUserInfo} from "../../shared/interfaces/user-info.interface";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMsg?: string;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private activatedRoute:ActivatedRoute) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData).subscribe({
       next: data => {
         localStorage.setItem('user token', data.access_token);
-        this.router.navigate(['/']);
+        let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/']);
       }, error: err => {
         this.errorMsg = err.error.message;
       },
