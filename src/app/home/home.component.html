@@ -1,6 +1,8 @@
 <p>home page</p>
 <p *ngIf="authService.isLoggedIn()">welcome person</p>
 <ul>
+
+  <li *ngIf="this.authService.isLoggedIn()"><a [routerLink]="['product/details',1]">product</a></li>
   <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">login</a></li>
   <li *ngIf="authService.isLoggedIn()"><a style="text-decoration: underline; color: blue;cursor: pointer" (click)="logout()">logout</a></li>
 </ul>
