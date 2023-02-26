@@ -33,8 +33,8 @@ export class AuthService {
     }
     let expireDate = jwt.getTokenExpirationDate(token);
     let expired = jwt.isTokenExpired(token);
-    console.log('date Expired',expireDate);
-    console.log('is Expired',expired);
+    // console.log('date Expired',expireDate);
+    // console.log('is Expired',expired);
   return !expired;
   }
 

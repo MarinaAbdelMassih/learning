@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { LightboxDirective } from './core/directives/lightbox.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     HomeComponent,
     ProductsComponent,
     ProductDetailsComponent,
+    LightboxDirective,
   ],
   imports: [
     BrowserModule,
