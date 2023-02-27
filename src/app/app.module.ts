@@ -9,11 +9,17 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from './home/home.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { LightboxDirective } from './core/directives/lightbox.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ProductsComponent,
+    ProductDetailsComponent,
+    LightboxDirective,
   ],
   imports: [
     BrowserModule,
